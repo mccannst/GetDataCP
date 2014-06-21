@@ -1,4 +1,5 @@
-# create a data frame
+# run_analysis.R
+# Coursera: Getting and Cleaning Data
 
 # read the features into a table
 featdf <-read.table("features.txt")
@@ -18,3 +19,16 @@ ytest <- read.table("y_test.txt")
 #read the subject file into a table (this will be our subject column)
 subtest <-read.table("subject_test.txt")
 
+#Combine Activity and Subject into Test Table
+alltest <- cbind(subtest,xtest)
+alltest <- cbind(ytest,alltest)
+
+#Combine Activity and Subject into Train Table
+alltrain <- cbind(subtrain,xtrain)
+alltrain <- cbind(ytrain,alltrain)
+
+#Combine Test and Training Tables
+masterset <- rbind(alltest,alltrain)
+
+#Add proper column names to the master set
+colnames(masterset) <- c("Activity","Subject", varnames)
