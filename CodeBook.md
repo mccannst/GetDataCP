@@ -1,6 +1,6 @@
-##run_analysis.R CodeBook
-# run_analysis.R
-# Coursera: Getting and Cleaning Data
+#run_analysis.R CodeBook
+
+
 run_analysis.R was written and executes well on R version 3.1.0 (2014-04-10); "Spring Dance"
 
 The assignment is to:
