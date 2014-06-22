@@ -13,13 +13,14 @@ Create one R script called run_analysis.R that does the following.
 
 
 # Step 1
-First, we unzip six files into the working directory:
+First, we unzip seven files into the working directory:
  - features.txt
  - X_test.txt
  - X_train.txt
  - y_test.txt
  - y_train.txt
  - subject_test.txt
+ - subject_train.txt
  
 Then attach the reshape package: http://cran.r-project.org/web/packages/reshape/index.html
 
