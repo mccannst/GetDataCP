@@ -21,6 +21,7 @@ ytest <- read.table("y_test.txt")
 
 #read the subject file into a table (this will be our subject column)
 subtest <-read.table("subject_test.txt")
+subtrain <-read.table("subject_train.txt")
 
 #Combine Activity and Subject into Test Table
 alltest <- cbind(ytest,xtest)
