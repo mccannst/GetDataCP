@@ -1,8 +1,8 @@
-runAnalysis.R README
+run_analysis.R README
 =========
 
 ## Course Project for Getting and Cleaning Data 
-runAnalysis.R does the following:
+run_analysis.R does the following:
  * Combines the test and training data sets from the Human Activity Recognition Using Smartphones Data Set.
  * Adds the Variable names as column names
  * Adds the Subject numbers as a column
@@ -14,7 +14,7 @@ runAnalysis.R does the following:
 
 
 ## Requirements
-runAnalysis.R was written and executes well on
+run_analysis.R was written and executes well on
 R version 3.1.0 (2014-04-10); "Spring Dance"
 
 Package Dependencies
