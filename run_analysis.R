@@ -1,11 +1,14 @@
 # run_analysis.R
 # Coursera: Getting and Cleaning Data
 
+library(reshape)
+
 # read the features into a table
 featdf <-read.table("features.txt")
 # make a vector of the feature names
 varnames <- featdf$V2
 # make the feature names vector into characters for easy column names.
+# NOTE: This is part of step 4 in the assignment
 varnames <-as.character(varnames)
 
 # read the data files into tables
@@ -20,18 +23,20 @@ ytest <- read.table("y_test.txt")
 subtest <-read.table("subject_test.txt")
 
 #Combine Activity and Subject into Test Table
-alltest <- cbind(subtest,xtest)
-alltest <- cbind(ytest,alltest)
+alltest <- cbind(ytest,xtest)
+alltest <- cbind(subtest,alltest)
+
 
 #Combine Activity and Subject into Train Table
-alltrain <- cbind(subtrain,xtrain)
-alltrain <- cbind(ytrain,alltrain)
+alltrain <- cbind(ytrain,xtrain)
+alltrain <- cbind(subtrain,alltrain)
+
 
 #Combine Test and Training Tables
 masterset <- rbind(alltest,alltrain)
 
-#Add proper column names to the master set
-colnames(masterset) <- c("Activity","Subject", varnames)
+#Add proper column names to the master set NOTE: This is also part of step 4
+colnames(masterset) <- c("Subject","Activity", varnames)
 
 # Step 2
 #Extract only the measurements on the mean and standard deviation for
@@ -61,5 +66,20 @@ activitytext <- factor(meanstdmaster$Activity, levels = c(1:6), labels = (actlab
 # column
 meanstdmaster$Activity <- activitytext
 
+#Step 4
+# Assign descriptive variable names to the data set
+# PLEASE NOTE: We did this already in step one when we made the master data set.
+
+#Step 5
+# Create a separate, tidy data set with the average of each variable for each
+# activity and each subject
+# First, using the reshape package, melt the data by subject and Activity
+meltedmaster <- melt(meanstdmaster, id=c("Subject","Activity"))
+# Second, cast the data into a new table by Subject + Activity, writing the 
+# MEAN of each variable to the cells
+castmaster <- cast(meltedmaster, Subject + Activity ~ variable, mean)
+
+#Write the final, tidy dataset to a file
+write.table(castmaster, "SubjActivityMeans.txt")
 
 
